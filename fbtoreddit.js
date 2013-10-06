@@ -16,7 +16,9 @@ function scrape(response){
 		if(typeof thisPost.story != "undefined")
 			snippet = thisPost.story;
 		else if(typeof thisPost.message != "undefined"){
-			snippet = thisPost.message + "...";
+			if(thisPost.message.length > 40)
+				snippet = thisPost.message.substr(0,40) + "...";
+			else snippet = thisPost.message;
 		}
 		content.push("<div class=\"thing link\"> <p class=\"parent\"></p> <span class=\"rank\"> " + (i+1) + 
 			"</span> <div class=\"midcol unvoted\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like(this)\"></div>" +
