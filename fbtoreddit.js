@@ -27,10 +27,17 @@ function scrape(response){
 		
 		if(typeof thisPost.link != "undefined") 
 			postURL = thisPost.link;
-		//console.log(thisPost.likes.data.length);
-		var likes = 0;// = thisPost.likes.data.length;
+		//console.log(thisPost.likes.length);
+		var postLikes = 0;// = thisPost.likes.length;
 		if(typeof thisPost.likes != "undefined")
-			likes = thisPost.likes.data.length;
+			postLikes = thisPost.likes.data.length;
+			
+		var dislikers = new Firebase('https://snoobook.firebaseio.com/' + postID + '/dislikers');	
+		console.log(postID);
+		dislikers.once('value', function(dataSnapshot) {
+  			if(dataSnapshot.hasChildren())
+  				postLikes -= dataSnapshot.numChildren();
+		});
 			
 		var snippet = "";
 		
@@ -49,9 +56,11 @@ function scrape(response){
 		}
 		content.push("<div class=\"thing link\"> <p class=\"parent\"></p> <span class=\"rank\"> " + (i+1) + 
 			"</span> <div class=\"midcol unvoted\" id=\"" + postID +  "\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like(this)\"></div>" +
-			"<div class=\"score likes\">" + (likes + 1) + "</div><div class=\"score unvoted\">" + likes + "</div><div class=\"score dislikes\">" + 
-			(likes - 1) + "</div><div class=\"arrow down login-required\" onclick=\"dislike(this)\" role=\"button\"></div></div>" + 
+			"<div class=\"score likes\">" + (postLikes + 1) + "</div><div class=\"score unvoted\">" + postLikes + "</div><div class=\"score dislikes\">" + 
+			(postLikes - 1) + "</div><div class=\"arrow down login-required\" onclick=\"dislike(this)\" role=\"button\"></div></div>" + 
 			"<p class=\"title\"><a href=\"" + postURL + "\">" + snippet + "</a></p> <div> by " + author + " </div><div class=\"clearleft\"></div>" + "</div>");
+		postLikes = 0;
+		console.log(postLikes);
 	}
 	//console.log(typeof content);
 	$('#siteTable').html(content.join(' '));
