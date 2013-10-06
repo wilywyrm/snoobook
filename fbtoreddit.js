@@ -1,10 +1,22 @@
 function scrape(response){
 	var content = [];
-	for(var a=0; a < response.data.length; a++)
+	for(var i = 0; i < response.data.length; i++)
 	{
 		//console.log(a);
 		//if(response.data[a].hasOwnProperty('source') == true){
-		content.push("<div>" + a +":"+ response.data[a].from.name + "<div>"+ response.data[a].id + "</div>" + "</div>");
+		var thisPost = response.data[i];
+		var author = thisPost.from.name;
+		var postID = thisPost.id;
+		var snippet;
+		if(typeof thisPost.story != "undefined")
+			snippet = thisPost.story;
+		else if(typeof thisPost.message != "undefined"){
+			snippet = thisPost.message + "...";
+		}
+		content.push("<div class=\"thing link\"> <p class=\"parent\"></p> <span class=\"rank\"> " + (i+1) + 
+			"</span> <div class=\"midcol unvoted\"> <div class=\"arrow up login-required\" role=\"button\"></div>" +
+			"<div class=\"score\">a score</div><div class=\"arrow down login-required\" role=\"button\"></div></div>" + 
+			"<p class=\"title\">" + snippet + "</p> <div> by " + author + " </div><div class=\"clearleft\"></div>" + "</div>");
 		//content.push("<div>"+ response.data[a].id + "</div> ");
 			//console.log(a +":"+response.data[a].from.name);
 			//console.log(response.data[a].id + '\n');
@@ -18,8 +30,9 @@ function scrape(response){
 		}
 		*/
 	}
-	console.log(typeof content);
-	$('#siteTable').text(content.join(' '));
+	//console.log(typeof content);
+	$('#siteTable').html(content.join(' '));
+	//console.log(typeof content.join(' '));
 }
 
 function init() {
@@ -27,7 +40,7 @@ function init() {
     FB.api('/me/home', {access_token: accessToken}, function(response) {
     	scrape(response);
    	  	console.log(response);
-      	$('#siteTable').text(response);
+      	//$('#siteTable').text(response);
     });
     FB.api('/me', function(response){
     	userID = response.id;
