@@ -1,22 +1,30 @@
-var postList = new Firebase('https://dislike.firebaseIO.com/posts');
-var userList = new Firebase('https://dislike.firebaseIO.com/users');
-
 function scrape(response){
 	for(var a=0; a < response.data.length; a++)
 	{
-		var HTML = [];
+		var content = [];
 		//console.log(a);
+<<<<<<< HEAD
 		if(response.data[a].hasOwnProperty('source') == true){
 			HTML.push("<div>" + a + response.data[a].from.name + "</div> ">);
+=======
+		//if(response.data[a].hasOwnProperty('source') == true){
+			content.push("<div>" + a +":"+ response.data[a].from.name + "</div>");
+			content.push("<div>"+ response.data[a].id + "</div> ");
+>>>>>>> 663b94bd12608fa77245ca8f262679072010e862
 			//console.log(a +":"+response.data[a].from.name);
 			//console.log(response.data[a].id + '\n');
+			/*
 		}
 		else{
+			content.push("<div>" + a + response.data[a].from.name + "</div> ">);
+			content.push("<div>" + a + response.data[a].id + "</div> ">);
 			//console.log(a+":"+response.data[a].from.name);
 			//console.log(response.data[a].message + '\n');
 		}
-		
+		*/
 	}
+	console.log()
+	$('#siteTable').html(content.join(''));
 }
 
 function init() {
