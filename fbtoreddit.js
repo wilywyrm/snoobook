@@ -1,11 +1,11 @@
 function scrape(response){
+	var content = [];
 	for(var a=0; a < response.data.length; a++)
 	{
-		var content = [];
 		//console.log(a);
 		//if(response.data[a].hasOwnProperty('source') == true){
-			content.push("<div>" + a +":"+ response.data[a].from.name + "</div>");
-			content.push("<div>"+ response.data[a].id + "</div> ");
+		content.push("<div>" + a +":"+ response.data[a].from.name + "<div>"+ response.data[a].id + "</div>" + "</div>");
+		//content.push("<div>"+ response.data[a].id + "</div> ");
 			//console.log(a +":"+response.data[a].from.name);
 			//console.log(response.data[a].id + '\n');
 			/*
@@ -18,8 +18,8 @@ function scrape(response){
 		}
 		*/
 	}
-	console.log()
-	$('#siteTable').html(content.join(''));
+	console.log(typeof content);
+	$('#siteTable').text(content.join(' '));
 }
 
 function init() {
