@@ -19,8 +19,9 @@ function scrape(response){
 			snippet = thisPost.message + "...";
 		}
 		content.push("<div class=\"thing link\"> <p class=\"parent\"></p> <span class=\"rank\"> " + (i+1) + 
-			"</span> <div class=\"midcol unvoted\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like()\"></div>" +
-			"<div class=\"score\">" + likes + "</div><div class=\"arrow down login-required\ onclick=\"dislike()\" role=\"button\"></div></div>" + 
+			"</span> <div class=\"midcol unvoted\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like(this)\"></div>" +
+			"<div class=\"score likes\">" + (likes + 1) + "</div><div class=\"score unvoted\">" + likes + "</div><div class=\"score dislikes\">" + 
+			(likes - 1) + "</div><div class=\"arrow down login-required\ onclick=\"dislike(this)\" role=\"button\"></div></div>" + 
 			"<p class=\"title\">" + snippet + "</p> <div> by " + author + " </div><div class=\"clearleft\"></div>" + "</div>");
 		//content.push("<div>"+ response.data[a].id + "</div> ");
 			//console.log(a +":"+response.data[a].from.name);
