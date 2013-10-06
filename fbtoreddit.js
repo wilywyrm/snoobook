@@ -20,9 +20,14 @@ function scrape(response){
 	{
 		var thisPost = response.data[i];
 		var author = thisPost.from.name;
+		var authorID = thisPost.from.id;
 		var postID = thisPost.id;
 		var postType = thisPost.type;
-		
+		if(thisPost.picture == null){
+			var profilepic = "http://graph.facebook.com/" + authorID + "/picture?type=square"
+			console.log(profilepic);}
+		else
+			var profilepic = thisPost.picture; 
 		var postURL = "http://facebook.com/" + postID;
 		
 		if(typeof thisPost.link != "undefined") 
@@ -58,6 +63,7 @@ function scrape(response){
 			"</span> <div class=\"midcol unvoted\" id=\"" + postID +  "\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like(this)\"></div>" +
 			"<div class=\"score likes\">" + (postLikes + 1) + "</div><div class=\"score unvoted\">" + postLikes + "</div><div class=\"score dislikes\">" + 
 			(postLikes - 1) + "</div><div class=\"arrow down login-required\" onclick=\"dislike(this)\" role=\"button\"></div></div>" + 
+			"<a class=\"thumbnail loggedin\" href=https://facebook.com/" + authorID +">" + "<img src=" + profilepic + " width=\"57\" height=\"57\" alt>" + "</a>" +		
 			"<p class=\"title\"><a href=\"" + postURL + "\">" + snippet + "</a></p> <div> by " + author + " </div><div class=\"clearleft\"></div>" + "</div>");
 		postLikes = 0;
 		console.log(postLikes);
