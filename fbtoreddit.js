@@ -1,12 +1,5 @@
 var postList = new Firebase('https://dislike.firebaseIO.com/posts');
 var userList = new Firebase('https://dislike.firebaseIO.com/users');
-<<<<<<< HEAD
-
-function scrape(){
-	
-}
-=======
->>>>>>> 58f87b8aa96b8bc315a1fe47a854ef36da2e7d5b
 
 function scrape(response){
 	for(var a=0; a < response.data.length; a++)
