@@ -16,7 +16,9 @@
 	var accessToken;
 	var opts = {scope: 'read_stream'};
 	var postList = new Firebase('https://snoobook.firebaseio.com/posts');
+	var post;
 	var userList = new Firebase('https://snoobook.firebaseio.com/users');
+	var user;
 	
   window.fbAsyncInit = function() {
   FB.init({

@@ -10,8 +10,7 @@ function init() {
     	console.log('Good to see you, ' + response.name + '.'); // ha you're a number
     	if(checkIfItemExists(userID, userList))
     		console.log("Looks like you've been here before. Welcome back.");
-    	else
-    		userList.push(userID);
+    	user = new Firebase('https://snoobook.firebaseio.com/users/' + userID);
     });
 }
 
@@ -49,7 +48,7 @@ function scrape(response){
 				snippet += thisPost.message;
 		}
 		content.push("<div class=\"thing link\"> <p class=\"parent\"></p> <span class=\"rank\"> " + (i+1) + 
-			"</span> <div class=\"midcol unvoted\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like(this)\"></div>" +
+			"</span> <div class=\"midcol unvoted\" id=\"" + postID +  "\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like(this)\"></div>" +
 			"<div class=\"score likes\">" + (likes + 1) + "</div><div class=\"score unvoted\">" + likes + "</div><div class=\"score dislikes\">" + 
 			(likes - 1) + "</div><div class=\"arrow down login-required\" onclick=\"dislike(this)\" role=\"button\"></div></div>" + 
 			"<p class=\"title\"><a href=\"" + postURL + "\">" + snippet + "</a></p> <div> by " + author + " </div><div class=\"clearleft\"></div>" + "</div>");
