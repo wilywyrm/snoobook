@@ -9,7 +9,7 @@ function scrape(response){
 		var postID = thisPost.id;
 		var postType = thisPost.type;
 		
-		var postURL = "#";
+		var postURL = "http://facebook.com/" + postID;
 		
 		if(typeof thisPost.link != "undefined") 
 			postURL = thisPost.link;
