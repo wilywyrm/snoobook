@@ -7,24 +7,37 @@ function scrape(response){
 		var thisPost = response.data[i];
 		var author = thisPost.from.name;
 		var postID = thisPost.id;
+		var postType = thisPost.type;
+		
+		var postURL;
+		
+		if(typeof thisPost.link != "undefined") 
+			postURL = thisPost.link;
 		//console.log(thisPost.likes.data.length);
 		var likes = 0;// = thisPost.likes.data.length;
 		if(typeof thisPost.likes != "undefined")
 			likes = thisPost.likes.data.length;
 			
-		var snippet;
+		var snippet = "";
+		
+		if(postType == "status")
+			snippet += "Self-Post: ";
+		else if (postType == "video")
+			snippet += "Video: ";
+		
 		if(typeof thisPost.story != "undefined")
-			snippet = thisPost.story;
+			snippet += thisPost.story;
 		else if(typeof thisPost.message != "undefined"){
-			if(thisPost.message.length > 40)
-				snippet = thisPost.message.substr(0,40) + "...";
-			else snippet = thisPost.message;
+			if(thisPost.message.length > 60)
+				snippet += thisPost.message.substr(0,60) + "...";
+			else 
+				snippet += thisPost.message;
 		}
 		content.push("<div class=\"thing link\"> <p class=\"parent\"></p> <span class=\"rank\"> " + (i+1) + 
 			"</span> <div class=\"midcol unvoted\"> <div class=\"arrow up login-required\" role=\"button\" onclick=\"like(this)\"></div>" +
 			"<div class=\"score likes\">" + (likes + 1) + "</div><div class=\"score unvoted\">" + likes + "</div><div class=\"score dislikes\">" + 
 			(likes - 1) + "</div><div class=\"arrow down login-required\ onclick=\"dislike(this)\" role=\"button\"></div></div>" + 
-			"<p class=\"title\">" + snippet + "</p> <div> by " + author + " </div><div class=\"clearleft\"></div>" + "</div>");
+			"<p class=\"title\"><a href=\"" + postURL + "\">" + snippet + "</a></p> <div> by " + author + " </div><div class=\"clearleft\"></div>" + "</div>");
 		//content.push("<div>"+ response.data[a].id + "</div> ");
 			//console.log(a +":"+response.data[a].from.name);
 			//console.log(response.data[a].id + '\n');
