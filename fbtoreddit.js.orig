@@ -1,24 +1,27 @@
+<<<<<<< HEAD
 function scrape(response){
 	for(var a=0; a < response.data.length; a++)
 	{
-		var content = [];
+		var HTML = [];
 		//console.log(a);
-		//if(response.data[a].hasOwnProperty('source') == true){
-			content.push("<div>" + a +":"+ response.data[a].from.name + "</div>");
-			content.push("<div>"+ response.data[a].id + "</div> ");
+		if(response.data[a].hasOwnProperty('source') == true){
+			HTML.push("<div>" + a + response.data[a].from.name + "</div> ">)
 			//console.log(a +":"+response.data[a].from.name);
 			//console.log(response.data[a].id + '\n');
-			/*
 		}
 		else{
-			content.push("<div>" + a + response.data[a].from.name + "</div> ">);
-			content.push("<div>" + a + response.data[a].id + "</div> ">);
 			//console.log(a+":"+response.data[a].from.name);
 			//console.log(response.data[a].message + '\n');
 		}
-		*/
+		
 	}
-	$('#siteTable').html(content.join(''));
+=======
+var postList = new Firebase('https://dislike.firebaseIO.com/posts');
+var userList = new Firebase('https://dislike.firebaseIO.com/users');
+
+function scrape(){
+	
+>>>>>>> initial firebase
 }
 
 function init() {
