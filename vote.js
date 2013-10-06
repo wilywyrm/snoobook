@@ -1,3 +1,4 @@
+//THIS IS OUR MAIN FEATURE
 function dislike() {
 	// firebase add dislike by user to post by ID if not already in list
 	// firebase increment dislike counter
