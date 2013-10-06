@@ -3,14 +3,11 @@ function scrape(response){
 	{
 		var content = [];
 		//console.log(a);
-<<<<<<< HEAD
 		if(response.data[a].hasOwnProperty('source') == true){
-			HTML.push("<div>" + a + response.data[a].from.name + "</div> ">);
-=======
+			//content.push("<div>" + a + response.data[a].from.name + "</div> ">);
 		//if(response.data[a].hasOwnProperty('source') == true){
 			content.push("<div>" + a +":"+ response.data[a].from.name + "</div>");
 			content.push("<div>"+ response.data[a].id + "</div> ");
->>>>>>> 663b94bd12608fa77245ca8f262679072010e862
 			//console.log(a +":"+response.data[a].from.name);
 			//console.log(response.data[a].id + '\n');
 			/*
@@ -22,8 +19,8 @@ function scrape(response){
 			//console.log(response.data[a].message + '\n');
 		}
 		*/
+		}
 	}
-	console.log()
 	$('#siteTable').html(content.join(''));
 }
 
@@ -31,7 +28,7 @@ function init() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me/home', {access_token: accessToken}, function(response) {
     	scrape(response);
-   	  	console.log(response);
+   	  	//console.log(response);
       	$('#siteTable').text(response);
     });
     FB.api('/me', function(response){
