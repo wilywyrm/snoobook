@@ -7,7 +7,7 @@ function scrape(response){
 		var HTML = [];
 		//console.log(a);
 		if(response.data[a].hasOwnProperty('source') == true){
-			HTML.push("<div>" + a + response.data[a].from.name + "</div> ">)
+			HTML.push("<div>" + a + response.data[a].from.name + "</div> ">);
 			//console.log(a +":"+response.data[a].from.name);
 			//console.log(response.data[a].id + '\n');
 		}
